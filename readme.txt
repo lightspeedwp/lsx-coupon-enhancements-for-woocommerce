@@ -1,0 +1,30 @@
+=== LSX Starter Plugin ===
+Contributors: feedmymedia
+Donate link: https://www.lsdev.biz/
+Tags: lsx
+Requires at least: 4.3
+Tested up to: 4.8
+Requires PHP: 7.0
+Stable tag: 1.0.8
+License: GPLv3
+
+This module does the following:
+===============================
+1. If customer purchases the Monthly subscription:
+   a. We generate a local coupon with predefined rules.
+   (locked to customers email, 1 use, 50% off, expiry date set)
+   b. We update the order notes with a message if coupon generation was successful or not.
+   c. We mail customer coupon notification email (lsx-coupon-notification-for-woocommerce plugin).
+   d. We update the order notes with a message if coupon was mailed to user or not.
+2. If customer purchases the Annual subscription:
+   a. We generate a remote coupon with predefined rules.
+   (locked to customers email, 1 use, 10% off, expiry date set) (TODO: double check the rules for remote coupon generation)
+   b. We update the order notes with a message if coupon generation was successful or not.
+   c. We mail customer coupon notification email (lsx-coupon-notification-for-woocommerce plugin).
+   d. We update the order notes with a message if coupon was mailed to user or not.
+
+TODO: put this plugin into git: https://github.com/lightspeeddevelopment/lsx-coupon-enhancements-for-woocommerce
+TODO: test email notification (lsx-coupon-notification-for-woocommerce plugin).
+TODO: move coupon notification plugin into git as well: https://github.com/lightspeeddevelopment/lsx-coupon-notification-for-woocommerce (TODO: this repo needs to be made)
+
+NOTE: this module uses "automattic/woocommerce" for remote REST API (composer require automattic/woocommerce).

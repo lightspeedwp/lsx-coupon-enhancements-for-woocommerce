@@ -23,8 +23,6 @@ This module does the following:
    c. We mail customer coupon notification email (lsx-coupon-notification-for-woocommerce plugin).
    d. We update the order notes with a message if coupon was mailed to user or not.
 
-TODO: put this plugin into git: https://github.com/lightspeeddevelopment/lsx-coupon-enhancements-for-woocommerce
 TODO: test email notification (lsx-coupon-notification-for-woocommerce plugin).
-TODO: move coupon notification plugin into git as well: https://github.com/lightspeeddevelopment/lsx-coupon-notification-for-woocommerce (TODO: this repo needs to be made)
 
 NOTE: this module uses "automattic/woocommerce" for remote REST API (composer require automattic/woocommerce).

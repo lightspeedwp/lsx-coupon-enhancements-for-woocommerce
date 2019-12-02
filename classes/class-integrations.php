@@ -53,6 +53,7 @@ class Integrations {
 				$coupon = $this->lsx_cew_generate_coupon( $user->user_email, $type );
 
 				if ( $coupon ) {
+					/* translators: %1$s: order id, %2$s: coupon code */
 					$order->add_order_note( sprintf( __( 'Coupon was generated for order id %1$s (%2$s).' ), $order_id, $coupon ) );
 					// We save coupon here, so we could get it when mailing this to user.
 					update_post_meta( $order_id, 'lsx_cew_coupon_code', $coupon );
@@ -67,6 +68,7 @@ class Integrations {
 						}
 					);
 				} else {
+					/* translators: %1$s: order id */
 					$order->add_order_note( sprintf( __( 'Coupon was not generated for order id %1$s.' ), $order_id ) );
 				}
 
@@ -123,7 +125,7 @@ class Integrations {
 		$coupon        = null;
 		$generator_url = get_option( 'lsx_cew_coupon_' . $type . '_coupon_gen_url', true );
 
-		if ( $generator_url == 'localhost' ) {
+		if ( 'localhost' == $generator_url ) {
 			$coupon = $this->lsx_cew_generate_local_coupon( $email );
 		} else {
 			$consumer_key    = get_option( 'lsx_cew_coupon_' . $type . '_rest_consumer_key', true );
@@ -217,7 +219,7 @@ class Integrations {
 		$coupon       = strtoupper( hash( 'adler32', $email, false ) );
 		$date_expires = gmtdate( 'Y-m-d H:i:s', strtotime( $expiry_date ) );
 		$sql          = $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY post_date DESC LIMIT 1;", $coupon );
-		$coupon_id    = $wpdb->get_var( $sql );
+		$coupon_id    = $wpdb->get_var( $sql ); // WPCS: unprepared SQL OK.
 
 		if ( empty( $coupon_id ) ) {
 			// Create a coupon with the properties you need.

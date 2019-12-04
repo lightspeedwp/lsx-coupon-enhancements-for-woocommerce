@@ -130,7 +130,7 @@ class Integrations {
 		} else {
 			$consumer_key    = get_option( 'lsx_cew_coupon_' . $type . '_rest_consumer_key', true );
 			$consumer_secret = get_option( 'lsx_cew_coupon_' . $type . '_rest_consumer_secret', true );
-			$coupon          = lsx_cew_generate_remote_coupon( $email, $generator_url, $consumer_key, $consumer_secret );
+			$coupon          = $this->lsx_cew_generate_remote_coupon( $email, $generator_url, $consumer_key, $consumer_secret );
 		}
 
 		return $coupon;

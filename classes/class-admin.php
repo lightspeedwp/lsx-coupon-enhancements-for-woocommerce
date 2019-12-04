@@ -77,13 +77,13 @@ class Admin {
 	 * Setup our custom settings tab.
 	 */
 	public function lsx_cew_setup_settings_tab() {
-		woocommerce_admin_fields( \lsx_cew\classes\Admin::lsx_cew_get_settings() );
+		woocommerce_admin_fields( self::lsx_cew_get_settings() );
 	}
 	/**
 	 * Save our settings.
 	 */
 	public function lsx_cew_save_settings() {
-		woocommerce_update_options( \lsx_cew\classes\Admin::lsx_cew_get_settings() );
+		woocommerce_update_options( self::lsx_cew_get_settings() );
 	}
 
 	/**
@@ -162,7 +162,7 @@ class Admin {
 			'section_3_title'     => array(
 				'name' => __( 'Coupon Email Notification Settings', 'lsx-cew' ),
 				'type' => 'title',
-				'desc' => "<strong><a href='http://rwplus.local/wp-admin/admin.php?page=wc-settings&tab=email&section=lsx_cnw_coupon_notification_email'>Email Notification Settings</a></strong>",
+				'desc' => "<strong><a href='/wp-admin/admin.php?page=wc-settings&tab=email&section=couponnotificationemail'>Email Notification Settings</a></strong>",
 				'id'   => 'lsx_cew_coupon_3_setting_section',
 			),
 			'section_3_end'       => array(

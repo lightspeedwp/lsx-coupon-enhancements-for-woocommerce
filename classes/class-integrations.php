@@ -61,12 +61,12 @@ class Integrations {
 					// For PHP version 5.3 or newer we use closures.
 					// If we have to, we could support older PHP?
 					// https://wordpress.stackexchange.com/questions/45901/passing-a-parameter-to-filter-and-action-functions
-					add_filter(
-						'woocommerce_thankyou_order_received_text',
-						function( $original_message ) use ( $status ) {
-							return $this->lsx_cew_modify_thankyou_message( $original_message, $status );
-						}
-					);
+					// add_filter(
+					// 	'woocommerce_thankyou_order_received_text',
+					// 	function( $original_message ) use ( $status ) {
+					// 		return $this->lsx_cew_modify_thankyou_message( $original_message, $status );
+					// 	}
+					// );
 				} else {
 					/* translators: %1$s: order id */
 					$order->add_order_note( sprintf( __( 'Coupon was not generated for order id %1$s.' ), $order_id ) );
@@ -217,7 +217,7 @@ class Integrations {
 		global $wpdb;
 		$expiry_date  = '2020-12-31'; // TODO 1
 		$coupon       = strtoupper( hash( 'adler32', $email, false ) );
-		$date_expires = gmtdate( 'Y-m-d H:i:s', strtotime( $expiry_date ) );
+		$date_expires = gmdate( 'Y-m-d H:i:s', strtotime( $expiry_date ) );
 		$sql          = $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY post_date DESC LIMIT 1;", $coupon );
 		$coupon_id    = $wpdb->get_var( $sql ); // WPCS: unprepared SQL OK.
 

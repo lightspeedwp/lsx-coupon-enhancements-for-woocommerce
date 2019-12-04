@@ -76,14 +76,14 @@ class Admin {
 	/**
 	 * Setup our custom settings tab.
 	 */
-	public static function lsx_cew_setup_settings_tab() {
-		woocommerce_admin_fields( $this->lsx_cew_get_settings() );
+	public function lsx_cew_setup_settings_tab() {
+		woocommerce_admin_fields( \lsx_cew\classes\Admin::lsx_cew_get_settings() );
 	}
 	/**
 	 * Save our settings.
 	 */
-	public static function lsx_cew_save_settings() {
-		woocommerce_update_options( $this->lsx_cew_get_settings() );
+	public function lsx_cew_save_settings() {
+		woocommerce_update_options( \lsx_cew\classes\Admin::lsx_cew_get_settings() );
 	}
 
 	/**

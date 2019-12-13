@@ -18,11 +18,9 @@ This module does the following:
    d. We update the order notes with a message if coupon was mailed to user or not.
 2. If customer purchases the Annual subscription:
    a. We generate a remote coupon with predefined rules.
-   (locked to customers email, 1 use, 10% off, expiry date set) (TODO: double check the rules for remote coupon generation)
+   (locked to customers email, 1 use, 100% off, expiry date set)
    b. We update the order notes with a message if coupon generation was successful or not.
    c. We mail customer coupon notification email (lsx-coupon-notification-for-woocommerce plugin).
    d. We update the order notes with a message if coupon was mailed to user or not.
-
-TODO: test email notification (lsx-coupon-notification-for-woocommerce plugin).
 
 NOTE: this module uses "automattic/woocommerce" for remote REST API (composer require automattic/woocommerce).

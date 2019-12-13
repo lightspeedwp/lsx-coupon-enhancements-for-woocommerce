@@ -106,7 +106,7 @@ class Admin {
 			'coupon_1_gen_url'    => array(
 				'name' => __( 'Coupon Generating URL', 'lsx-cew' ),
 				'type' => 'text',
-				'desc' => __( 'URL of the REST API host that will generate the coupon (NOTE: use "localhost" for this server)', 'lsx-cew' ),
+				'desc' => __( 'URL of the REST API host (including http(s) infront) that will generate the coupon (NOTE: use "localhost" for this server)', 'lsx-cew' ),
 				'id'   => 'lsx_cew_coupon_1_coupon_gen_url',
 			),
 			'coupon_1_gen_key'    => array(
@@ -140,7 +140,7 @@ class Admin {
 			'coupon_2_gen_url'    => array(
 				'name' => __( 'Coupon Generating URL', 'lsx-cew' ),
 				'type' => 'text',
-				'desc' => __( 'URL of the REST API host that will generate the coupon (NOTE: use "localhost" for this server)', 'lsx-cew' ),
+				'desc' => __( 'URL of the REST API host (including http(s) infront) that will generate the coupon (NOTE: use "localhost" for this server)', 'lsx-cew' ),
 				'id'   => 'lsx_cew_coupon_2_coupon_gen_url',
 			),
 			'coupon_2_gen_key'    => array(

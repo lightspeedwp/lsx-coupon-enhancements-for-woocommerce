@@ -62,10 +62,10 @@ class Integrations {
 					// If we have to, we could support older PHP?
 					// https://wordpress.stackexchange.com/questions/45901/passing-a-parameter-to-filter-and-action-functions
 					// add_filter(
-					// 	'woocommerce_thankyou_order_received_text',
-					// 	function( $original_message ) use ( $status ) {
-					// 		return $this->lsx_cew_modify_thankyou_message( $original_message, $status );
-					// 	}
+					// 'woocommerce_thankyou_order_received_text',
+					// function( $original_message ) use ( $status ) {
+					// return $this->lsx_cew_modify_thankyou_message( $original_message, $status );
+					// }
 					// );
 				} else {
 					/* translators: %1$s: order id */
@@ -162,9 +162,6 @@ class Integrations {
 	 * @param   string $consumer_secret  REST API consumer secret.
 	 *
 	 * @return  string                    Generated coupon.
-	 *
-	 * TODO 1: need to know the value of coupon (10%? 50%? R20? R100?).
-	 * TODO 2: when should coupon expire?
 	 */
 	public static function lsx_cew_generate_remote_coupon( $email, $generator_url, $consumer_key, $consumer_secret ) {
 		// Connect to remote machines REST API.
@@ -178,25 +175,25 @@ class Integrations {
 				'query_string_auth' => true,
 			)
 		);
-
+		file_put_contents("DEBUG.txt", "DEBUG: " . print_r($woocommerce, true) . "\n\n", FILE_APPEND);
 		// Generate the coupon by hashing users email address.
 		// NOTE: will only be unique if user does not try to buy subscription again, so think of a better way.
 		$coupon = strtoupper( hash( 'adler32', $email, false ) );
 
 		// Build coupon expiry date.
-		$date_expires = date( 'Y-m-d H:i:s', strtotime( '2019-07-31' ) ); // TODO 1
+		$date_expires = gmdate( 'Y-m-d H:i:s', strtotime( '+1 year' ) );
 
 		// Build data array needed for coupon generation.
 		$coupon_data = array(
 			'code'                 => $coupon,
 			'discount_type'        => 'percent', // percent, fixed_cart, fixed_product. Default is fixed_cart.
-			'amount'               => '10', // TODO 2
+			'amount'               => '100',
 			'usage_limit'          => 1,
 			'usage_limit_per_user' => 1,
 			'email_restrictions'   => array( $email ),
 			'date_expires'         => $date_expires, // 2019-07-31 00:00:00
 		);
-
+		file_put_contents("DEBUG.txt", "DEBUG: " . print_r($coupon_data, true) . "\n\n", FILE_APPEND);
 		// Generate coupon.
 		$response = $woocommerce->post( 'coupons', $coupon_data );
 
@@ -209,15 +206,12 @@ class Integrations {
 	 * @param   string $email  Customers email address.
 	 *
 	 * @return  string          Generated coupon.
-	 *
-	 * TODO 1: when should coupon expire?
 	 */
 	public static function lsx_cew_generate_local_coupon( $email ) {
 		// Check if the coupon has already been created in the database.
 		global $wpdb;
-		$expiry_date  = '2020-12-31'; // TODO 1
 		$coupon       = strtoupper( hash( 'adler32', $email, false ) );
-		$date_expires = gmdate( 'Y-m-d H:i:s', strtotime( $expiry_date ) );
+		$date_expires = gmdate( 'Y-m-d H:i:s', strtotime( '+1 year' ) );
 		$sql          = $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type = 'shop_coupon' AND post_status = 'publish' ORDER BY post_date DESC LIMIT 1;", $coupon );
 		$coupon_id    = $wpdb->get_var( $sql ); // WPCS: unprepared SQL OK.
 

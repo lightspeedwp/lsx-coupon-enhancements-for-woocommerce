@@ -175,7 +175,7 @@ class Integrations {
 				'query_string_auth' => true,
 			)
 		);
-		file_put_contents("DEBUG.txt", "DEBUG: " . print_r($woocommerce, true) . "\n\n", FILE_APPEND);
+		file_put_contents( 'DEBUG.txt', 'DEBUG: ' . print_r( $woocommerce, true ) . "\n\n", FILE_APPEND );
 		// Generate the coupon by hashing users email address.
 		// NOTE: will only be unique if user does not try to buy subscription again, so think of a better way.
 		$coupon = strtoupper( hash( 'adler32', $email, false ) );
@@ -193,7 +193,7 @@ class Integrations {
 			'email_restrictions'   => array( $email ),
 			'date_expires'         => $date_expires, // 2019-07-31 00:00:00
 		);
-		file_put_contents("DEBUG.txt", "DEBUG: " . print_r($coupon_data, true) . "\n\n", FILE_APPEND);
+		file_put_contents( 'DEBUG.txt', 'DEBUG: ' . print_r( $coupon_data, true ) . "\n\n", FILE_APPEND );
 		// Generate coupon.
 		$response = $woocommerce->post( 'coupons', $coupon_data );
 

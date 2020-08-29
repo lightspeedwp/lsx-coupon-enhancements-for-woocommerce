@@ -1,6 +1,6 @@
 {
-    "name": "lightspeeddevelopment/to-search",
-    "description": "The Tour Operator Search extension adds robust search functionality to sites, allowing filterable search by post type, category and more.",
+    "name": "lightspeeddevelopment/lsx-coupon-enhancements-for-woocommerce",
+    "description": "LSX Coupon enhancements for WooCommerce.",
     "type": "wordpress-plugin",
     "require": {
         "php": ">=7.2",
